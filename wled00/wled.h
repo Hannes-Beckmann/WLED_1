@@ -241,6 +241,10 @@ using PSRAMDynamicJsonDocument = BasicJsonDocument<PSRAM_Allocator>;
 WLED_GLOBAL char versionString[] _INIT(TOSTRING(WLED_VERSION));
 #define WLED_CODENAME "Hoshi"
 
+// Realtime UPD Data
+WLED_GLOBAL int8_t udprgb [256][3];
+
+
 // AP and OTA default passwords (for maximum security change them!)
 WLED_GLOBAL char apPass[65]  _INIT(WLED_AP_PASS);
 WLED_GLOBAL char otaPass[33] _INIT(DEFAULT_OTA_PASS);

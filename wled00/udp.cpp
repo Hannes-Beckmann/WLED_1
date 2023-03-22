@@ -151,6 +151,7 @@ void notify(byte callMode, bool followUp)
 
 void realtimeLock(uint32_t timeoutMs, byte md)
 {
+  return;
   if (!realtimeMode && !realtimeOverride) {
     uint16_t stop, start;
     if (useMainSegmentOnly) {
@@ -463,7 +464,7 @@ void handleNotifications()
     return;
   }
 
-  if (!receiveDirect) return;
+  //if (!receiveDirect) return;
 
   //TPM2.NET
   if (udpIn[0] == 0x9c)
@@ -596,12 +597,15 @@ void setRealtimePixel(uint16_t i, byte r, byte g, byte b, byte w)
       b = gamma8(b);
       w = gamma8(w);
     }
-    if (useMainSegmentOnly) {
+    udprgb[i][0] = r;
+    udprgb[i][1] = g;
+    udprgb[i][2] = b;
+    /*if (useMainSegmentOnly) {
       Segment &seg = strip.getMainSegment();
       if (pix<seg.length()) seg.setPixelColor(pix, r, g, b, w);
     } else {
       strip.setPixelColor(pix, r, g, b, w);
-    }
+    }*/
   }
 }
 

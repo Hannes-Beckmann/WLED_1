@@ -1287,7 +1287,7 @@ function makeWS() {
 		} else
 			i = lastinfo;
 		var s = json.state ? json.state : json;
-		displayRover(i, s);
+		//displayRover(i, s);
 		readState(s);
 	};
 	ws.onclose = (e)=>{

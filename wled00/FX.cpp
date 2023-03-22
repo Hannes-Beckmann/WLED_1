@@ -85,6 +85,19 @@ uint16_t mode_static(void) {
 static const char _data_FX_MODE_STATIC[] PROGMEM = "Solid";
 
 
+// UDP effect
+
+uint16_t mode_udp_realtime(void) {
+  for (int i = 0; i < SEGLEN; i++) {
+    SEGMENT.setPixelColor(i, udprgb[i][0], udprgb[i][1], udprgb[i][2]);
+  }
+
+  return FRAMETIME;
+}
+static const char _data_FX_MODE_UDP_REALTIME[] PROGMEM = "UDP Realtime@!,Duty cycle;!,!;!;01";
+
+
+
 /*
  * Blink/strobe function
  * Alternate between color1 and color2
@@ -7420,6 +7433,7 @@ void WS2812FX::setupEffectData() {
   }
   // now replace all pre-allocated effects
   // --- 1D non-audio effects ---
+  addEffect(FX_MODE_UDP_REALTIME, &mode_udp_realtime, _data_FX_MODE_UDP_REALTIME);
   addEffect(FX_MODE_BLINK, &mode_blink, _data_FX_MODE_BLINK);
   addEffect(FX_MODE_BREATH, &mode_breath, _data_FX_MODE_BREATH);
   addEffect(FX_MODE_COLOR_WIPE, &mode_color_wipe, _data_FX_MODE_COLOR_WIPE);
