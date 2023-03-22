@@ -596,12 +596,15 @@ void setRealtimePixel(uint16_t i, byte r, byte g, byte b, byte w)
       b = gamma8(b);
       w = gamma8(w);
     }
-    if (useMainSegmentOnly) {
+    udprgb[pix][0] = r;
+    udprgb[pix][1] = g;
+    udprgb[pix][2] = b;
+    /*if (useMainSegmentOnly) {
       Segment &seg = strip.getMainSegment();
       if (pix<seg.length()) seg.setPixelColor(pix, r, g, b, w);
     } else {
       strip.setPixelColor(pix, r, g, b, w);
-    }
+    }*/
   }
 }
 

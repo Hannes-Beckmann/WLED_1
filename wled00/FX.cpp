@@ -75,6 +75,17 @@ int8_t tristate_square8(uint8_t x, uint8_t pulsewidth, uint8_t attdec) {
 
 // effect functions
 
+// UDP effect
+
+uint16_t mode_udp_realtime(void) {
+  for (int i = 0; i < SEGLEN; i++) {
+    SEGMENT.setPixelColor(i, udprgb[i][0], udprgb[i][1], udprgb[i][2]);
+  }
+
+  return FRAMETIME;
+}
+static const char _data_FX_MODE_UDP_REALTIME[] PROGMEM = "UDP Realtime@!,Duty cycle;!,!;!;01";
+
 /*
  * No blinking. Just plain old static light.
  */
@@ -7409,6 +7420,7 @@ void WS2812FX::addEffect(uint8_t id, mode_ptr mode_fn, const char *mode_name) {
   }
 }
 
+
 void WS2812FX::setupEffectData() {
   // Solid must be first! (assuming vector is empty upon call to setup)
   _mode.push_back(&mode_static);
@@ -7420,6 +7432,7 @@ void WS2812FX::setupEffectData() {
   }
   // now replace all pre-allocated effects
   // --- 1D non-audio effects ---
+  addEffect(FX_MODE_UP_REALTIME, &mode_udp_realtime, _data_FX_MODE_UDP_REALTIME);
   addEffect(FX_MODE_BLINK, &mode_blink, _data_FX_MODE_BLINK);
   addEffect(FX_MODE_BREATH, &mode_breath, _data_FX_MODE_BREATH);
   addEffect(FX_MODE_COLOR_WIPE, &mode_color_wipe, _data_FX_MODE_COLOR_WIPE);
