@@ -8,6 +8,8 @@
 /platformio_override.ini
 /wled00/my_config.h
 /build_output
+/buildcache
+/.buildcache
 .DS_Store
 .gitignore
 .clang-format
