@@ -152,6 +152,7 @@ void notify(byte callMode, bool followUp)
 void realtimeLock(uint32_t timeoutMs, byte md)
 {
   return;
+  // if realtime started
   if (!realtimeMode && !realtimeOverride) {
     uint16_t stop, start;
     if (useMainSegmentOnly) {
@@ -509,7 +510,7 @@ void handleNotifications()
   if (udpIn[0] > 0 && udpIn[0] < 5)
   {
     realtimeIP = (isSupp) ? notifier2Udp.remoteIP() : notifierUdp.remoteIP();
-    DEBUG_PRINTLN(realtimeIP);
+    //DEBUG_PRINTLN(realtimeIP);
     if (packetSize < 2) return;
 
     if (udpIn[1] == 0)
@@ -565,7 +566,7 @@ void handleNotifications()
         id++;
       }
     }
-    strip.show();
+    //strip.show();
     return;
   }
 
